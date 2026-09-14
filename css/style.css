@@ -96,8 +96,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted); font-size: .76rem; box-shadow: 0 15px 40px rgba(0,0,0,.25);
 }
 .floating-card strong { color: var(--text); }
-.floating-one { top: 11%; right: 2%; }
-.floating-two { bottom: 10%; left: 0; }
+.floating-one { top: 8%; left: 2%; }
+.floating-two { bottom: 10%; right: 1%; }
 
 .stats-strip { border-block: 1px solid var(--line); background: #0e0e0e; }
 .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
