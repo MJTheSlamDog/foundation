@@ -254,3 +254,55 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent);
   box-shadow: 0 0 0 7px rgba(155,79,63,.12);
 }
+
+
+/* Expanded 2026–2030 future plan content */
+.timeline-item h4{margin:-.25rem 0 .8rem;color:var(--silver);font-size:1rem}.timeline-list{margin:.7rem 0 1rem;padding-left:1.25rem}.timeline-list li{margin:.5rem 0;color:var(--muted)}.timeline-list li::marker{color:var(--accent)}.timeline-goal{margin-top:1rem;padding:.9rem 1rem;border-left:3px solid var(--accent);background:rgba(155,79,63,.08)}
+
+
+/* Partners */
+.partners-section {
+  background: var(--bg);
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.partner-logo {
+  min-height: 145px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #f2f2f0;
+  border: 1px solid rgba(155,79,63,.28);
+  border-radius: 12px;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.partner-logo:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 32px rgba(155,79,63,.18);
+}
+
+.partner-logo span {
+  color: #777;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+@media (max-width: 900px) {
+  .partners-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 500px) {
+  .partners-grid { gap: 12px; }
+  .partner-logo { min-height: 110px; padding: 18px; }
+}
