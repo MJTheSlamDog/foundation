@@ -1,30 +1,70 @@
-const menuToggle = document.querySelector(".menu-toggle");
+// ========================================
+// MOBILE NAVIGATION
+// ========================================
+
+const menuToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 
 menuToggle?.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", open);
+  const isOpen = navLinks.classList.toggle("active");
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
 });
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+// Close menu when a navigation link is clicked
+document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
+    navLinks?.classList.remove("active");
+
     menuToggle?.setAttribute("aria-expanded", "false");
+    menuToggle?.setAttribute("aria-label", "Open navigation");
   });
 });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
+
+// ========================================
+// SCROLL REVEAL ANIMATION
+// ========================================
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12
     }
+  );
+
+  revealElements.forEach((element, index) => {
+    element.style.transitionDelay = `${Math.min(index * 45, 250)}ms`;
+    observer.observe(element);
   });
-}, { threshold: 0.12 });
+} else {
+  // Fallback for browsers without IntersectionObserver
+  revealElements.forEach((element) => {
+    element.classList.add("visible");
+  });
+}
 
-document.querySelectorAll(".reveal").forEach((element, index) => {
-  element.style.transitionDelay = `${Math.min(index * 45, 250)}ms`;
-  observer.observe(element);
-});
 
-document.getElementById("year").textContent = new Date().getFullYear();
+// ========================================
+// CURRENT YEAR
+// ========================================
+
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
